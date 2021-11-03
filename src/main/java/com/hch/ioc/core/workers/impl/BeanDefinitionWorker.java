@@ -107,10 +107,14 @@ public class BeanDefinitionWorker implements Worker {
                 .getIocScanClazzList()
                 .stream()
                 .forEach(clazz -> {
+                    // build iocScanDefinition for clazz
                     IocScanDefinition iocScanDefinition = doScans(clazz);
+                    // put the iocScanDefinition into the correct map in BeanDefinitionRegistry
                     if ((iocScanDefinition.getConditionalOnMissingBeanDefinition() == null)) {
+                        // put under registry
                         BeanDefinitionRegistry.getInstance().getRegistry().put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
                     } else {
+                        // put under conditionalOnMissingBeanRegistry
                         BeanDefinitionRegistry.getInstance().getConditionalOnMissingBeanRegistry().put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
                     }
                 });
