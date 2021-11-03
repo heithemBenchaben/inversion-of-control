@@ -28,10 +28,10 @@ public class BeanDefinitionWorker implements Worker {
         buildIocScanDefinitionMap();
         // add missing bean @ConditionalOnMissingBean
         checkConditionalOnMissingBean();
-        // organize iocScanDefinitionMap with correct hierarchy
-        toHierarchyRegistry();
         // clean hierarchyRegistry by removing mismatch profiles
         cleanUpRegistryByProfile();
+        // organize iocScanDefinitionMap with correct hierarchy
+        toHierarchyRegistry();
     }
 
     private void checkConditionalOnMissingBean() {
@@ -66,7 +66,7 @@ public class BeanDefinitionWorker implements Worker {
     }
 
     private void cleanUpRegistryByProfile() {
-        Map<String, IocScanDefinition> cleanUpRegistryResult = new LinkedHashMap<>();
+        Map<String, IocScanDefinition> cleanUpRegistryResult = new HashMap<>();
         // retrieve configured profiles
         String configuredProfiles = PropertiesRegistry
                 .getInstance()
