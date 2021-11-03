@@ -31,7 +31,8 @@ public class BeanDefinitionWorker implements Worker {
         checkConditionalOnMissingBean();
         // clean registry by removing mismatch profiles
         cleanUpRegistryByProfile();
-        // organize iocScanDefinitionMap with correct hierarchy
+        // organize the registry with correct hierarchy
+        // child on top of parents
         toHierarchyRegistry();
     }
 
@@ -146,13 +147,17 @@ public class BeanDefinitionWorker implements Worker {
      * @return
      */
     private void toHierarchyRegistry() {
-        Map<String, IocScanDefinition> map = new LinkedHashMap<>();
+        // Initialize registry
+        // linkedHashMap to conserve the order of put
+        Map<String, IocScanDefinition> registry = new LinkedHashMap<>();
+        // build a stack containing parents on bottom of child
         Stack<IocScanDefinition> stack = buildStack();
+        // fill the registry by pop the stack
         while (!stack.empty()) {
             IocScanDefinition iocScanDefinition = stack.pop();
-            map.put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
+            registry.put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
         }
-        BeanDefinitionRegistry.getInstance().setRegistry(map);
+        BeanDefinitionRegistry.getInstance().setRegistry(registry);
     }
 
     /**
