@@ -27,19 +27,21 @@ public class BeanDefinitionWorker implements Worker {
         // build iocScanDefinitionMap
         buildIocScanDefinitionMap();
         // add missing bean @ConditionalOnMissingBean
-        addConditionalOnMissingBean();
+        checkConditionalOnMissingBean();
         // organize iocScanDefinitionMap with correct hierarchy
         toHierarchyRegistry();
         // clean hierarchyRegistry by removing mismatch profiles
         cleanUpRegistryByProfile();
     }
 
-    private void addConditionalOnMissingBean() {
+    private void checkConditionalOnMissingBean() {
+        // loop over all conditionalOnMissingBean definitions under the BeanDefinitionRegistry
         BeanDefinitionRegistry
                 .getInstance()
                 .getConditionalOnMissingBeanRegistry()
                 .values()
                 .forEach(missingBean -> {
+                    // put missing bean to the registry if not exist
                     if (!checkConditionalOnMissingBean(missingBean)) {
                         BeanDefinitionRegistry
                                 .getInstance()
