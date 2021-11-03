@@ -18,6 +18,7 @@ import java.util.Stack;
 public class BeanDefinitionWorker implements Worker {
 
     public static final String ACTIVE_PROFILES = "active.profiles";
+    public static final String DEFAULT = "default";
 
     /**
      * build iocScanDefinition for every class annotated by IocScan and fill the BeanDefinitionRegistry
@@ -66,16 +67,18 @@ public class BeanDefinitionWorker implements Worker {
     }
 
     private void cleanUpRegistryByProfile() {
+        // initialize clean up map
         Map<String, IocScanDefinition> cleanUpRegistryResult = new HashMap<>();
-        // retrieve configured profiles
+        // retrieve configured profiles from properties
         String configuredProfiles = PropertiesRegistry
                 .getInstance()
                 .getProperties()
                 .get(ACTIVE_PROFILES);
         // if configuredProfiles is not configured so active profile is set to default
-        String activeProfiles = (configuredProfiles == null ? "default" : configuredProfiles.concat("default"));
+        // if configuredProfiles is configured so accept this profile and the default one
+        String activeProfiles = (configuredProfiles == null ? DEFAULT : configuredProfiles.concat(DEFAULT));
 
-        // filter hierarchyRegistry to accept only match profile
+        // filter registry to accept only match profiles
         BeanDefinitionRegistry
                 .getInstance()
                 .getRegistry()
@@ -87,6 +90,7 @@ public class BeanDefinitionWorker implements Worker {
                             }
                         }
                 );
+        // set the clean up map to the registry
         BeanDefinitionRegistry.getInstance().setRegistry(cleanUpRegistryResult);
     }
 
@@ -95,11 +99,9 @@ public class BeanDefinitionWorker implements Worker {
         return iocScanDefinition
                 .getProfiles()
                 .stream()
-                .filter(profile ->
+                .anyMatch(profile ->
                         activeProfiles.contains(profile)
-                )
-                .findFirst()
-                .isPresent();
+                );
     }
 
     private void buildIocScanDefinitionMap() {
