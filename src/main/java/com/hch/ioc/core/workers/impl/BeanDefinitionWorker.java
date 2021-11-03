@@ -101,7 +101,6 @@ public class BeanDefinitionWorker implements Worker {
     }
 
     private void buildIocScanDefinitionMap() {
-        Map<String, IocScanDefinition> iocScanDefinitionMap = new HashMap<>();
         // loop over all classes annotated by IocScan
         IocScanClazzRegistry
                 .getInstance()
