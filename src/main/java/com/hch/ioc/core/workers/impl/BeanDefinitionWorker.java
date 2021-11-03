@@ -29,7 +29,7 @@ public class BeanDefinitionWorker implements Worker {
         buildIocScanDefinitionMap();
         // add missing bean @ConditionalOnMissingBean
         checkConditionalOnMissingBean();
-        // clean hierarchyRegistry by removing mismatch profiles
+        // clean registry by removing mismatch profiles
         cleanUpRegistryByProfile();
         // organize iocScanDefinitionMap with correct hierarchy
         toHierarchyRegistry();
