@@ -187,6 +187,6 @@ public class ContainerUtils {
                         ).findFirst().isPresent()
                 )
                 .findFirst()
-                .orElseThrow(() -> new SimpleIocException(String.format("No Bean match %s", name)));
+                .orElseThrow(() -> new SimpleIocException(String.format("No instance found matching %s", name)));
     }
 }
