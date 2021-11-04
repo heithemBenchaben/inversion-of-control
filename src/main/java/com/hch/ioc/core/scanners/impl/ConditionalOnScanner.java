@@ -15,7 +15,8 @@ public class ConditionalOnScanner implements Scanner {
     public void doScan(IocScanDefinition iocScanDefinition) {
         Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(iocScanDefinition.getClazz(), ConditionalOn.class);
         if (optionalAnnotation.isPresent()) {
-            iocScanDefinition.setConditionalOnDefinition(new ConditionalOnDefinition(optionalAnnotation.get()));
+            ConditionalOn conditionalOn = (ConditionalOn) optionalAnnotation.get();
+            iocScanDefinition.setConditionalOnDefinition(new ConditionalOnDefinition(conditionalOn));
         }
     }
 }

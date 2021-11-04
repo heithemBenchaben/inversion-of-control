@@ -1,20 +1,22 @@
 package com.hch.ioc.core.definitions;
 
+import com.hch.ioc.core.annotations.ConditionalOnMissingBean;
+
 import java.lang.annotation.Annotation;
 
 public class ConditionalOnMissingBeanDefinition {
 
-    private Annotation onConditionalMissingBean;
+    private ConditionalOnMissingBean conditionalMissingBean;
 
-    public ConditionalOnMissingBeanDefinition(Annotation onConditionalMissingBean) {
-        this.onConditionalMissingBean = onConditionalMissingBean;
+    public ConditionalOnMissingBeanDefinition(ConditionalOnMissingBean conditionalMissingBean) {
+        this.conditionalMissingBean = conditionalMissingBean;
     }
 
-    public Annotation getOnConditionalMissingBean() {
-        return onConditionalMissingBean;
+    public ConditionalOnMissingBean getConditionalMissingBean() {
+        return conditionalMissingBean;
     }
 
-    public void setOnConditionalMissingBean(Annotation onConditionalMissingBean) {
-        this.onConditionalMissingBean = onConditionalMissingBean;
+    public void setConditionalMissingBean(ConditionalOnMissingBean conditionalMissingBean) {
+        this.conditionalMissingBean = conditionalMissingBean;
     }
 }

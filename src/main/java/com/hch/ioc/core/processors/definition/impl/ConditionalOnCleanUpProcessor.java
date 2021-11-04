@@ -1,6 +1,5 @@
 package com.hch.ioc.core.processors.definition.impl;
 
-import com.hch.ioc.core.annotations.ConditionalOn;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.processors.definition.BeanDefinitionProcessor;
 import com.hch.ioc.core.registries.BeanDefinitionRegistry;
@@ -30,8 +29,8 @@ public class ConditionalOnCleanUpProcessor implements BeanDefinitionProcessor {
     }
 
     private boolean checkPropertyForConditionalOn(IocScanDefinition iocScanDefinition) {
-        String property = ((ConditionalOn) iocScanDefinition.getConditionalOnDefinition().getConditionalOn()).property();
-        String having = ((ConditionalOn) iocScanDefinition.getConditionalOnDefinition().getConditionalOn()).having();
+        String property = iocScanDefinition.getConditionalOnDefinition().getConditionalOn().property();
+        String having = iocScanDefinition.getConditionalOnDefinition().getConditionalOn().having();
         return PropertiesRegistry.getInstance().getProperties().get(property).equals(having);
     }
 }

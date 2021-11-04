@@ -1,20 +1,20 @@
 package com.hch.ioc.core.definitions;
 
-import java.lang.annotation.Annotation;
+import com.hch.ioc.core.annotations.ConditionalOn;
 
 public class ConditionalOnDefinition {
 
-    private Annotation conditionalOn;
+    private ConditionalOn conditionalOn;
 
-    public ConditionalOnDefinition(Annotation conditionalOn) {
+    public ConditionalOnDefinition(ConditionalOn conditionalOn) {
         this.conditionalOn = conditionalOn;
     }
 
-    public Annotation getConditionalOn() {
+    public ConditionalOn getConditionalOn() {
         return conditionalOn;
     }
 
-    public void setConditionalOn(Annotation conditionalOn) {
+    public void setConditionalOn(ConditionalOn conditionalOn) {
         this.conditionalOn = conditionalOn;
     }
 }
