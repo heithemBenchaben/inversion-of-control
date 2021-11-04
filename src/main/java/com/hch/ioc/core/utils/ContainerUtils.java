@@ -2,6 +2,7 @@ package com.hch.ioc.core.utils;
 
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.exceptions.SimpleIocException;
+import com.hch.ioc.core.registries.BeanDefinitionRegistry;
 
 import java.io.File;
 import java.io.IOException;
@@ -174,8 +175,10 @@ public class ContainerUtils {
                 ;
     }
 
-    public static IocScanDefinition findIocScanDefinitionByType(String name, Map<String, IocScanDefinition> iocScanDefinitionMap) {
-        return iocScanDefinitionMap
+    public static IocScanDefinition findIocScanDefinitionByType(String name) {
+        return BeanDefinitionRegistry
+                .getInstance()
+                .getRegistry()
                 .values()
                 .stream()
                 .filter(iocScanDefinition ->

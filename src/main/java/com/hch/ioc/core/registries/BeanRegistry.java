@@ -1,11 +1,9 @@
 package com.hch.ioc.core.registries;
 
 import com.hch.ioc.core.definitions.IocScanDefinition;
-import com.hch.ioc.core.enums.Scope;
 import com.hch.ioc.core.processors.context.BeanProcessContext;
 import com.hch.ioc.core.processors.template.ProcessorsTemplateProvider;
 import com.hch.ioc.core.utils.ContainerUtils;
-import com.hch.ioc.core.workers.impl.BeanWorker;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -49,7 +47,7 @@ public class BeanRegistry {
 
     private IocScanDefinition getIocScanDefinitionByName(String name) {
         IocScanDefinition iocSD = BeanDefinitionRegistry.getInstance().getRegistry().get(name);
-        return (iocSD != null ? iocSD : ContainerUtils.findIocScanDefinitionByType(name, BeanDefinitionRegistry.getInstance().getRegistry()));
+        return (iocSD != null ? iocSD : ContainerUtils.findIocScanDefinitionByType(name));
     }
 
     public Map<String, Object> getBeans() {

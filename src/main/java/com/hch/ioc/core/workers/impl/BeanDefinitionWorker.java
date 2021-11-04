@@ -185,19 +185,19 @@ public class BeanDefinitionWorker implements Worker {
             iocScanDefinition
                     .getIocInjectDefinitions()
                     .forEach(iocInjectDefinition -> {
-                        IocScanDefinition iocsd = getTarget(iocInjectDefinition, BeanDefinitionRegistry.getInstance().getRegistry());
+                        IocScanDefinition iocScanDefinitionTarget = getTarget(iocInjectDefinition);
                         if (filledIocScanDefinitionMap.get(iocInjectDefinition.getField().getType().getName()) == null) {
                             // recursive call
-                            fillStack(iocsd, stack, filledIocScanDefinitionMap);
+                            fillStack(iocScanDefinitionTarget, stack, filledIocScanDefinitionMap);
                         } else {
-                            throw new SimpleIocException(String.format("Circular dependency injection between *** %s *** and === %s ===", iocScanDefinition.getClazz().getName(), iocsd.getClazz().getName()));
+                            throw new SimpleIocException(String.format("Circular dependency injection between *** %s *** and === %s ===", iocScanDefinition.getClazz().getName(), iocScanDefinitionTarget.getClazz().getName()));
                         }
                     });
         }
     }
 
-    private IocScanDefinition getTarget(IocInjectDefinition iocInjectDefinition, Map<String, IocScanDefinition> iocScanDefinitionMap) {
+    private IocScanDefinition getTarget(IocInjectDefinition iocInjectDefinition) {
         String name = iocInjectDefinition.getField().getType().getName();
-        return ContainerUtils.findIocScanDefinitionByType(name, iocScanDefinitionMap);
+        return ContainerUtils.findIocScanDefinitionByType(name);
     }
 }
