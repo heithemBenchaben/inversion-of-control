@@ -164,14 +164,15 @@ public class BeanDefinitionWorker implements Worker {
      * @return
      */
     private Stack<IocScanDefinition> buildStack() {
+        // Initialize a stack
         Stack<IocScanDefinition> stack = new Stack<>();
-        Map<String, IocScanDefinition> filledIocScanDefinitionMap = new HashMap<>();
-        // loop over iocScanDefinitionMap
+        // loop over registry
         BeanDefinitionRegistry
                 .getInstance()
                 .getRegistry()
                 .values()
                 .forEach(iocScanDefinition ->
+                        // fill the
                         fillStack(iocScanDefinition, stack, new HashMap<>())
                 );
         return stack;
