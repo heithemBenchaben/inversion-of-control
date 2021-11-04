@@ -1,4 +1,4 @@
-package com.hch.ioc.core.processors.context;
+package com.hch.ioc.core.processors.bean.context;
 
 import com.hch.ioc.core.definitions.IocScanDefinition;
 

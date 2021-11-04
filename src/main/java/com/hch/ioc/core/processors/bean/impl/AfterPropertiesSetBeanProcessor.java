@@ -1,13 +1,13 @@
-package com.hch.ioc.core.processors.impl;
+package com.hch.ioc.core.processors.bean.impl;
 
 import com.hch.ioc.core.definitions.AfterPropertiesSetDefinition;
 import com.hch.ioc.core.exceptions.SimpleIocException;
-import com.hch.ioc.core.processors.Processor;
-import com.hch.ioc.core.processors.context.BeanProcessContext;
+import com.hch.ioc.core.processors.bean.BeanProcessor;
+import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class AfterPropertiesSetProcessor implements Processor {
+public class AfterPropertiesSetBeanProcessor implements BeanProcessor {
 
     /**
      * execute method annotated by @AfterPropertiesSet if exist

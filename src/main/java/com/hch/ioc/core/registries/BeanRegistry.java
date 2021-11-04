@@ -1,8 +1,8 @@
 package com.hch.ioc.core.registries;
 
 import com.hch.ioc.core.definitions.IocScanDefinition;
-import com.hch.ioc.core.processors.context.BeanProcessContext;
-import com.hch.ioc.core.processors.template.ProcessorsTemplateProvider;
+import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
+import com.hch.ioc.core.processors.bean.template.ProcessorsTemplateProvider;
 import com.hch.ioc.core.utils.ContainerUtils;
 
 import java.util.LinkedHashMap;

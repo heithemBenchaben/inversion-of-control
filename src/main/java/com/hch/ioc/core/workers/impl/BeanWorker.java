@@ -1,8 +1,8 @@
 package com.hch.ioc.core.workers.impl;
 
 import com.hch.ioc.core.enums.Scope;
-import com.hch.ioc.core.processors.context.BeanProcessContext;
-import com.hch.ioc.core.processors.template.ProcessorsTemplateProvider;
+import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
+import com.hch.ioc.core.processors.bean.template.ProcessorsTemplateProvider;
 import com.hch.ioc.core.registries.BeanDefinitionRegistry;
 import com.hch.ioc.core.workers.Worker;
 

@@ -1,14 +1,14 @@
-package com.hch.ioc.core.processors.impl;
+package com.hch.ioc.core.processors.bean.impl;
 
 import com.hch.ioc.core.definitions.IocInjectDefinition;
 import com.hch.ioc.core.exceptions.SimpleIocException;
-import com.hch.ioc.core.processors.Processor;
-import com.hch.ioc.core.processors.context.BeanProcessContext;
+import com.hch.ioc.core.processors.bean.BeanProcessor;
+import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
 import com.hch.ioc.core.registries.BeanRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class DependencySetterProcessor implements Processor {
+public class DependencySetterBeanProcessor implements BeanProcessor {
 
     /**
      * set all field annotated by @IocInject
