@@ -1,5 +1,6 @@
 package com.hch.ioc.core;
 
+import com.hch.ioc.core.exceptions.SimpleIocException;
 import com.hch.ioc.core.workers.template.WorkerTemplateProvider;
 
 public class IocRunner {
@@ -14,6 +15,10 @@ public class IocRunner {
     }
 
     private static void start() {
-        WorkerTemplateProvider.start();
+        try {
+            WorkerTemplateProvider.start();
+        } catch (Exception e) {
+            throw new SimpleIocException(e);
+        }
     }
 }
