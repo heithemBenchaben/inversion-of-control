@@ -2,8 +2,6 @@ package com.hch.ioc.core.definitions;
 
 import com.hch.ioc.core.annotations.ConditionalOnMissingBean;
 
-import java.lang.annotation.Annotation;
-
 public class ConditionalOnMissingBeanDefinition {
 
     private ConditionalOnMissingBean conditionalMissingBean;

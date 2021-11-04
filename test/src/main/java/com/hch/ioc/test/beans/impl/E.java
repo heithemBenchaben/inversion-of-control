@@ -1,9 +1,9 @@
 package com.hch.ioc.test.beans.impl;
 
 import com.hch.ioc.core.annotations.AfterPropertiesSet;
+import com.hch.ioc.core.annotations.ConditionalOnMissingBean;
 import com.hch.ioc.core.annotations.IocInject;
 import com.hch.ioc.core.annotations.IocScan;
-import com.hch.ioc.core.annotations.ConditionalOnMissingBean;
 import com.hch.ioc.test.beans.I7;
 
 @IocScan

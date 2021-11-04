@@ -1,8 +1,8 @@
 package com.hch.ioc.core.workers.impl;
 
-import com.hch.ioc.core.workers.Worker;
 import com.hch.ioc.core.registries.PropertiesRegistry;
 import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.workers.Worker;
 
 import java.util.HashMap;
 import java.util.Map;

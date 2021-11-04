@@ -1,8 +1,8 @@
 package com.hch.ioc.core.scanners.impl;
 
 import com.hch.ioc.core.annotations.AfterPropertiesSet;
-import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.definitions.AfterPropertiesSetDefinition;
+import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.scanners.Scanner;
 import com.hch.ioc.core.utils.ContainerUtils;
 
