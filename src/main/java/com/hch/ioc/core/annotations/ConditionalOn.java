@@ -6,5 +6,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ConditionalOn {
-    boolean check() default false;
+    String property();
+    String having();
 }

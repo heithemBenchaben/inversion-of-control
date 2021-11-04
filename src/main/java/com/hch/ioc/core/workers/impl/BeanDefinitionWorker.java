@@ -46,11 +46,17 @@ public class BeanDefinitionWorker implements Worker {
                 .getInstance()
                 .getRegistry()
                 .forEach((key, value) -> {
-                    if (value.getConditionalOnDefinition() == null || (value.getConditionalOnDefinition() != null && ((ConditionalOn) value.getConditionalOnDefinition().getConditionalOn()).check())) {
+                    if (value.getConditionalOnDefinition() == null || (value.getConditionalOnDefinition() != null && checkPropertyForConditionalOn(value))) {
                         cleanUpRegistryByConditionalOnResult.put(key, value);
                     }
                 });
         BeanDefinitionRegistry.getInstance().setRegistry(cleanUpRegistryByConditionalOnResult);
+    }
+
+    private boolean checkPropertyForConditionalOn(IocScanDefinition iocScanDefinition) {
+        String property = ((ConditionalOn) iocScanDefinition.getConditionalOnDefinition().getConditionalOn()).property();
+        String having = ((ConditionalOn) iocScanDefinition.getConditionalOnDefinition().getConditionalOn()).having();
+        return PropertiesRegistry.getInstance().getProperties().get(property).equals(having);
     }
 
     private void checkConditionalOnMissingBean() {

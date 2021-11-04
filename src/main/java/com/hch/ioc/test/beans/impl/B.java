@@ -6,7 +6,7 @@ import com.hch.ioc.test.beans.I2;
 
 @IocProfile(profiles = {"dev", "staging"})
 @IocScan
-@ConditionalOn(check = true)
+@ConditionalOn(property = "check.conditional.on", having = "do_inject")
 public class B implements I2 {
 
     @ExternalProperty("first.name")
@@ -27,7 +27,7 @@ public class B implements I2 {
 
     @Override
     public void print() {
-        System.out.println(String.format("reference :: %s, first name :: %s , lastName :: %s",this, getFirstName(), getLastName()));
+        System.out.println(String.format("reference :: %s, first name :: %s , lastName :: %s", this, getFirstName(), getLastName()));
     }
 
     public String getFirstName() {
