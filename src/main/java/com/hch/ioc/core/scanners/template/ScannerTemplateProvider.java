@@ -35,7 +35,8 @@ public class ScannerTemplateProvider {
                     new ExternalPropertyScanner(),
                     new AfterPropertiesSetScanner(),
                     new BeforeDestroyScanner(),
-                    new ConditionalOnMissingBeanScanner()
+                    new ConditionalOnMissingBeanScanner(),
+                    new ConditionalOnScanner()
             );
         }
         return scanners;

@@ -16,6 +16,7 @@ public class IocScanDefinition {
     private AfterPropertiesSetDefinition afterPropertiesSetDefinition;
     private BeforeDestroyDefinition beforeDestroyDefinition;
     private ConditionalOnMissingBeanDefinition conditionalOnMissingBeanDefinition;
+    private ConditionalOnDefinition conditionalOnDefinition;
 
     public IocScanDefinition(Class<?> clazz) {
         this.clazz = clazz;
@@ -96,5 +97,13 @@ public class IocScanDefinition {
 
     public void setConditionalOnMissingBeanDefinition(ConditionalOnMissingBeanDefinition conditionalOnMissingBeanDefinition) {
         this.conditionalOnMissingBeanDefinition = conditionalOnMissingBeanDefinition;
+    }
+
+    public ConditionalOnDefinition getConditionalOnDefinition() {
+        return conditionalOnDefinition;
+    }
+
+    public void setConditionalOnDefinition(ConditionalOnDefinition conditionalOnDefinition) {
+        this.conditionalOnDefinition = conditionalOnDefinition;
     }
 }

@@ -1,5 +1,6 @@
 package com.hch.ioc.core.workers.impl;
 
+import com.hch.ioc.core.annotations.ConditionalOn;
 import com.hch.ioc.core.definitions.IocInjectDefinition;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.exceptions.SimpleIocException;
@@ -27,6 +28,8 @@ public class BeanDefinitionWorker implements Worker {
     public void start() {
         // build iocScanDefinitionMap
         buildIocScanDefinitionMap();
+        // cleanUp mismatch conditionalOn
+        cleanUpRegistryByConditionalOn();
         // add missing bean @ConditionalOnMissingBean
         checkConditionalOnMissingBean();
         // clean registry by removing mismatch profiles
@@ -34,6 +37,20 @@ public class BeanDefinitionWorker implements Worker {
         // organize the registry with correct hierarchy
         // child on top of parents
         toHierarchyRegistry();
+    }
+
+    private void cleanUpRegistryByConditionalOn() {
+        Map<String, IocScanDefinition> cleanUpRegistryByConditionalOnResult = new HashMap<>();
+        // loop over all conditionalOnMissingBean definitions under the BeanDefinitionRegistry
+        BeanDefinitionRegistry
+                .getInstance()
+                .getRegistry()
+                .forEach((key, value) -> {
+                    if (value.getConditionalOnDefinition() == null || (value.getConditionalOnDefinition() != null && ((ConditionalOn) value.getConditionalOnDefinition().getConditionalOn()).check())) {
+                        cleanUpRegistryByConditionalOnResult.put(key, value);
+                    }
+                });
+        BeanDefinitionRegistry.getInstance().setRegistry(cleanUpRegistryByConditionalOnResult);
     }
 
     private void checkConditionalOnMissingBean() {

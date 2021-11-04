@@ -6,6 +6,7 @@ import com.hch.ioc.test.beans.I2;
 
 @IocProfile(profiles = {"dev", "staging"})
 @IocScan
+@ConditionalOn(check = true)
 public class B implements I2 {
 
     @ExternalProperty("first.name")
