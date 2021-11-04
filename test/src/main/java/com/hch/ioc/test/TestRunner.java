@@ -4,10 +4,11 @@ import com.hch.ioc.core.IocRunner;
 import com.hch.ioc.core.registries.BeanRegistry;
 import com.hch.ioc.test.beans.impl.C;
 import com.hch.ioc.test.beans.impl.P;
+import com.hch.ioc.web.Lunch;
 
 public class TestRunner {
-    public static void main(String[] args) {
-        IocRunner.run();
+    public static void main(String[] args) throws Exception {
+        Lunch.main(args);
         print();
     }
 
