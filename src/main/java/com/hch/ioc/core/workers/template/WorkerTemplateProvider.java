@@ -36,6 +36,7 @@ public class WorkerTemplateProvider {
                             new ExternalPropertiesWorker(),
                             new IocScanWorker(),
                             new BeanDefinitionWorker(),
+                            new BeanDefinitionRegistryWorker(),
                             new BeanWorker(),
                             new ShutdownHookWorker()
                     );
