@@ -26,12 +26,6 @@ public class BeanDefinitionWorker implements Worker {
      */
     @Override
     public void start() {
-        // build iocScanDefinitionMap
-        startBuildingBeanDefinitionRegistry();
-    }
-
-
-    private void startBuildingBeanDefinitionRegistry() {
         // loop over all classes annotated by IocScan
         IocScanClazzRegistry
                 .getInstance()
@@ -42,10 +36,10 @@ public class BeanDefinitionWorker implements Worker {
                     IocScanDefinition iocScanDefinition = doScans(clazz);
                     // put the iocScanDefinition into the correct map in BeanDefinitionRegistry
                     if ((iocScanDefinition.getConditionalOnMissingBeanDefinition() == null)) {
-                        // put under registry
+                        // put under the global registry
                         BeanDefinitionRegistry.getInstance().getRegistry().put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
                     } else {
-                        // put under conditionalOnMissingBeanRegistry
+                        // put under conditional on missing bean registry
                         BeanDefinitionRegistry.getInstance().getConditionalOnMissingBeanRegistry().put(iocScanDefinition.getClazz().getName(), iocScanDefinition);
                     }
                 });

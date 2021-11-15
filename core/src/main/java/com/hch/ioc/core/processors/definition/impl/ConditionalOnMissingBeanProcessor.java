@@ -5,6 +5,19 @@ import com.hch.ioc.core.processors.definition.BeanDefinitionProcessor;
 import com.hch.ioc.core.registries.BeanDefinitionRegistry;
 
 public class ConditionalOnMissingBeanProcessor implements BeanDefinitionProcessor {
+
+    private static ConditionalOnMissingBeanProcessor conditionalOnMissingBeanProcessor;
+
+    private ConditionalOnMissingBeanProcessor() {
+    }
+
+    public static ConditionalOnMissingBeanProcessor getInstance() {
+        if (conditionalOnMissingBeanProcessor == null) {
+            conditionalOnMissingBeanProcessor = new ConditionalOnMissingBeanProcessor();
+        }
+        return conditionalOnMissingBeanProcessor;
+    }
+
     @Override
     public void process() {
         processConditionalOnMissingBean();

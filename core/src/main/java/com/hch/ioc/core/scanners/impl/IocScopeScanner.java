@@ -11,6 +11,18 @@ import java.util.Optional;
 
 public class IocScopeScanner implements Scanner {
 
+    private static IocScopeScanner iocScopeScanner;
+
+    private IocScopeScanner() {
+    }
+
+    public static IocScopeScanner getInstance() {
+        if (iocScopeScanner == null) {
+            iocScopeScanner = new IocScopeScanner();
+        }
+        return iocScopeScanner;
+    }
+
     /**
      * set scope in the iocScanDefinition
      *
@@ -25,6 +37,7 @@ public class IocScopeScanner implements Scanner {
 
     /**
      * find scope
+     * if not exist the scope will be singleton
      *
      * @param clazz
      * @return

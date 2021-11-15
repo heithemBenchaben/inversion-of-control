@@ -9,6 +9,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConditionalOnCleanUpProcessor implements BeanDefinitionProcessor {
+
+    private static ConditionalOnCleanUpProcessor conditionalOnCleanUpProcessor;
+
+    private ConditionalOnCleanUpProcessor() {
+    }
+
+    public static ConditionalOnCleanUpProcessor getInstance() {
+        if (conditionalOnCleanUpProcessor == null) {
+            conditionalOnCleanUpProcessor = new ConditionalOnCleanUpProcessor();
+        }
+        return conditionalOnCleanUpProcessor;
+    }
+
     @Override
     public void process() {
         processConditionalOn();

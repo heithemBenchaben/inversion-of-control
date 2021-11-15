@@ -7,6 +7,18 @@ import java.util.Arrays;
 
 public class TypeScanner implements Scanner {
 
+    private static TypeScanner typeScanner;
+
+    private TypeScanner() {
+    }
+
+    public static TypeScanner getInstance() {
+        if (typeScanner == null) {
+            typeScanner = new TypeScanner();
+        }
+        return typeScanner;
+    }
+
     /**
      * fetch all interfaces that clazz implements
      * set types in the iocScanDefinition

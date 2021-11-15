@@ -12,6 +12,18 @@ import java.util.stream.Collectors;
 
 public class ExternalPropertyScanner implements Scanner {
 
+    private static ExternalPropertyScanner externalPropertyScanner;
+
+    private ExternalPropertyScanner() {
+    }
+
+    public static ExternalPropertyScanner getInstance() {
+        if (externalPropertyScanner == null) {
+            externalPropertyScanner = new ExternalPropertyScanner();
+        }
+        return externalPropertyScanner;
+    }
+
     /**
      * scan clazz
      * fetch for fields annotated by @ExternalProperty

@@ -9,8 +9,6 @@ import java.util.List;
 
 public class ScannerTemplateProvider {
 
-    private static List<Scanner> scanners;
-
     public static void doScans(IocScanDefinition iocScanDefinition) {
         getScanners()
                 .forEach(scanner ->
@@ -26,20 +24,18 @@ public class ScannerTemplateProvider {
      * @return List<Scanner>
      */
     public static List<Scanner> getScanners() {
-        if (scanners == null) {
-            scanners = Arrays.asList(
-                    new TypeScanner(),
-                    new IocProfileScanner(),
-                    new IocScopeScanner(),
-                    new IocCacheableScanner(),
-                    new IocInjectScanner(),
-                    new ExternalPropertyScanner(),
-                    new AfterPropertiesSetScanner(),
-                    new BeforeDestroyScanner(),
-                    new ConditionalOnMissingBeanScanner(),
-                    new ConditionalOnScanner()
-            );
-        }
-        return scanners;
+        return
+                Arrays.asList(
+                        TypeScanner.getInstance(),
+                        IocProfileScanner.getInstance(),
+                        IocScopeScanner.getInstance(),
+                        IocCacheableScanner.getInstance(),
+                        IocInjectScanner.getInstance(),
+                        ExternalPropertyScanner.getInstance(),
+                        AfterPropertiesSetScanner.getInstance(),
+                        BeforeDestroyScanner.getInstance(),
+                        ConditionalOnMissingBeanScanner.getInstance(),
+                        ConditionalOnScanner.getInstance()
+                );
     }
 }

@@ -11,6 +11,23 @@ import java.util.Optional;
 
 public class IocCacheableScanner implements Scanner {
 
+    private static IocCacheableScanner iocCacheableScanner;
+
+    private IocCacheableScanner() {
+    }
+
+    public static IocCacheableScanner getInstance() {
+        if (iocCacheableScanner == null) {
+            iocCacheableScanner = new IocCacheableScanner();
+        }
+        return iocCacheableScanner;
+    }
+
+    /**
+     * find @IocCacheable under clazz
+     * if exist build a CacheableDefinition based on @IocCacheable found
+     * @param iocScanDefinition
+     */
     @Override
     public void doScan(IocScanDefinition iocScanDefinition) {
         Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(iocScanDefinition.getClazz(), IocCacheable.class);

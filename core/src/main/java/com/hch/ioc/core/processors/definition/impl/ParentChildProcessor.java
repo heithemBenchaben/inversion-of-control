@@ -13,6 +13,19 @@ import java.util.Map;
 import java.util.Stack;
 
 public class ParentChildProcessor implements BeanDefinitionProcessor {
+
+    private static ParentChildProcessor parentChildProcessor;
+
+    private ParentChildProcessor() {
+    }
+
+    public static ParentChildProcessor getInstance() {
+        if (parentChildProcessor == null) {
+            parentChildProcessor = new ParentChildProcessor();
+        }
+        return parentChildProcessor;
+    }
+
     @Override
     public void process() {
         processParentChildHierarchy();

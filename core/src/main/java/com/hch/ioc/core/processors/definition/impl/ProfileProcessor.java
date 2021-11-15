@@ -13,6 +13,18 @@ public class ProfileProcessor implements BeanDefinitionProcessor {
     public static final String ACTIVE_PROFILES = "active.profiles";
     public static final String DEFAULT = "default";
 
+    private static ProfileProcessor profileProcessor;
+
+    private ProfileProcessor() {
+    }
+
+    public static ProfileProcessor getInstance() {
+        if (profileProcessor == null) {
+            profileProcessor = new ProfileProcessor();
+        }
+        return profileProcessor;
+    }
+
     @Override
     public void process() {
         processProfile();

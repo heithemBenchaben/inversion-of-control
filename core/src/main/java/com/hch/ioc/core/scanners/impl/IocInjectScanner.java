@@ -12,10 +12,22 @@ import java.util.stream.Collectors;
 
 public class IocInjectScanner implements Scanner {
 
+    private static IocInjectScanner iocInjectScanner;
+
+    private IocInjectScanner() {
+    }
+
+    public static IocInjectScanner getInstance() {
+        if (iocInjectScanner == null) {
+            iocInjectScanner = new IocInjectScanner();
+        }
+        return iocInjectScanner;
+    }
+
     /**
      * scan a clazz
      * fetch all fields annotated by @IocInject in the target clazz
-     * build IocInjectDefinitions
+     * build IocInjectDefinition for each field
      * set the IocInjectDefinitions in the iocScanDefinition
      *
      * @param iocScanDefinition

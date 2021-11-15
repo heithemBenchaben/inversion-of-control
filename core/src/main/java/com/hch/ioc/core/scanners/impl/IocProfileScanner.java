@@ -12,6 +12,20 @@ import java.util.Optional;
 
 public class IocProfileScanner implements Scanner {
 
+    public static final String DEFAULT = "default";
+
+    private static IocProfileScanner iocProfileScanner;
+
+    private IocProfileScanner() {
+    }
+
+    public static IocProfileScanner getInstance() {
+        if (iocProfileScanner == null) {
+            iocProfileScanner = new IocProfileScanner();
+        }
+        return iocProfileScanner;
+    }
+
     /**
      * set profiles in the iocScanDefinition if exist
      *
@@ -25,13 +39,14 @@ public class IocProfileScanner implements Scanner {
     }
 
     /**
-     * get profiles
+     * find profiles in clazz
+     * if not exist set profile to default
      *
      * @param clazz
      * @return
      */
     private List<String> findProfilesIfExist(Class<?> clazz) {
         Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(clazz, IocProfile.class);
-        return (optionalAnnotation.isPresent() ? Arrays.asList(((IocProfile) optionalAnnotation.get()).profiles()) : Arrays.asList("default"));
+        return (optionalAnnotation.isPresent() ? Arrays.asList(((IocProfile) optionalAnnotation.get()).profiles()) : Arrays.asList(DEFAULT));
     }
 }

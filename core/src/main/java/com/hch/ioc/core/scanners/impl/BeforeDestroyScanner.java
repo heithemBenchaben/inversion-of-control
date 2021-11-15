@@ -11,6 +11,19 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class BeforeDestroyScanner implements Scanner {
+
+    private static BeforeDestroyScanner beforeDestroyScanner;
+
+    private BeforeDestroyScanner() {
+    }
+
+    public static BeforeDestroyScanner getInstance() {
+        if (beforeDestroyScanner == null) {
+            beforeDestroyScanner = new BeforeDestroyScanner();
+        }
+        return beforeDestroyScanner;
+    }
+
     /**
      * scan clazz
      * find method annotated by @BeforeDestroy under clazz

@@ -11,6 +11,18 @@ import java.util.Optional;
 
 public class ConditionalOnScanner implements Scanner {
 
+    private static ConditionalOnScanner conditionalOnScanner;
+
+    private ConditionalOnScanner() {
+    }
+
+    public static ConditionalOnScanner getInstance() {
+        if (conditionalOnScanner == null) {
+            conditionalOnScanner = new ConditionalOnScanner();
+        }
+        return conditionalOnScanner;
+    }
+
     @Override
     public void doScan(IocScanDefinition iocScanDefinition) {
         Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(iocScanDefinition.getClazz(), ConditionalOn.class);

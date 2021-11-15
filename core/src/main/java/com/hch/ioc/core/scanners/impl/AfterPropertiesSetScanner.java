@@ -11,6 +11,19 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class AfterPropertiesSetScanner implements Scanner {
+
+    private static AfterPropertiesSetScanner afterPropertiesSetScanner;
+
+    private AfterPropertiesSetScanner() {
+    }
+
+    public static AfterPropertiesSetScanner getInstance() {
+        if (afterPropertiesSetScanner == null) {
+            afterPropertiesSetScanner = new AfterPropertiesSetScanner();
+        }
+        return afterPropertiesSetScanner;
+    }
+
     /**
      * scan clazz
      * find method annotated by @AfterPropertiesSet under clazz
