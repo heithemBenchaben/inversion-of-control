@@ -9,8 +9,6 @@ import java.util.List;
 
 public class ProcessorsTemplateProvider {
 
-    private static List<BeanProcessor> beanProcessors;
-
     /**
      * loop over beanProcessors and execute process in order to apply all processor behaviour into beanProcessContext
      *
@@ -30,24 +28,22 @@ public class ProcessorsTemplateProvider {
      * @return List<BeanProcessor>
      */
     public static List<BeanProcessor> getBeanProcessors() {
-        if (beanProcessors == null) {
-            beanProcessors = Arrays.asList(
-                    // create empty instance
-                    new BeanInitializerBeanProcessor(),
-                    // set external properties
-                    new ExternalPropertiesBeanProcessor(),
-                    // set instance's dependencies
-                    new DependencySetterBeanProcessor(),
-                    // invock method annotated with afterPropertiesSet if exist
-                    new AfterPropertiesSetBeanProcessor(),
-                    new ProxyBeanProcessor(),
-                    // add the instance to the list beforeDestroy if there is method annotated by BeforeDestroy
-                    new BeforeDestroyBeanProcessor(),
-                    // add the instance to the bean registry for singleton scope
-                    // for prototype scope the instance will be created at runtime when we call getBean method
-                    new ReadyToUseBeanBeanProcessor()
-            );
-        }
-        return beanProcessors;
+        return Arrays.asList(
+                // create empty instance
+                BeanInitializerBeanProcessor.getInstance(),
+                // set external properties
+                ExternalPropertiesBeanProcessor.getInstance(),
+                // set instance's dependencies
+                DependencySetterBeanProcessor.getInstance(),
+                // invock method annotated with afterPropertiesSet if exist
+                AfterPropertiesSetBeanProcessor.getInstance(),
+                // try create a proxy if needed
+                ProxyBeanProcessor.getInstance(),
+                // add the instance to the list beforeDestroy if there is method annotated by BeforeDestroy
+                BeforeDestroyBeanProcessor.getInstance(),
+                // add the instance to the bean registry for singleton scope
+                // for prototype scope the instance will be created at runtime when we call getBean method
+                ReadyToUseBeanBeanProcessor.getInstance()
+        );
     }
 }

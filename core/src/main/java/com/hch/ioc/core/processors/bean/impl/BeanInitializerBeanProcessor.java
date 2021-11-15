@@ -9,8 +9,21 @@ import java.lang.reflect.InvocationTargetException;
 
 public class BeanInitializerBeanProcessor implements BeanProcessor {
 
+    private static BeanInitializerBeanProcessor beanInitializerBeanProcessor;
+
+    private BeanInitializerBeanProcessor() {
+    }
+
+    public static BeanInitializerBeanProcessor getInstance() {
+        if (beanInitializerBeanProcessor == null) {
+            beanInitializerBeanProcessor = new BeanInitializerBeanProcessor();
+        }
+        return beanInitializerBeanProcessor;
+    }
+
     /**
      * create an empty object by invoking the empty constructor
+     *
      * @param beanProcessContext
      */
     @Override

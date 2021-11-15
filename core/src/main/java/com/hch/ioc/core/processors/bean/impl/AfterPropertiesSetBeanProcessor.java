@@ -9,6 +9,18 @@ import java.lang.reflect.InvocationTargetException;
 
 public class AfterPropertiesSetBeanProcessor implements BeanProcessor {
 
+    private static AfterPropertiesSetBeanProcessor afterPropertiesSetBeanProcessor;
+
+    private AfterPropertiesSetBeanProcessor() {
+    }
+
+    public static AfterPropertiesSetBeanProcessor getInstance() {
+        if (afterPropertiesSetBeanProcessor == null) {
+            afterPropertiesSetBeanProcessor = new AfterPropertiesSetBeanProcessor();
+        }
+        return afterPropertiesSetBeanProcessor;
+    }
+
     /**
      * execute method annotated by @AfterPropertiesSet if exist
      *

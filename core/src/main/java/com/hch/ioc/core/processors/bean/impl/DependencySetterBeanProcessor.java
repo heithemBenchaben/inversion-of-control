@@ -10,6 +10,18 @@ import java.lang.reflect.InvocationTargetException;
 
 public class DependencySetterBeanProcessor implements BeanProcessor {
 
+    private static DependencySetterBeanProcessor dependencySetterBeanProcessor;
+
+    private DependencySetterBeanProcessor() {
+    }
+
+    public static DependencySetterBeanProcessor getInstance() {
+        if (dependencySetterBeanProcessor == null) {
+            dependencySetterBeanProcessor = new DependencySetterBeanProcessor();
+        }
+        return dependencySetterBeanProcessor;
+    }
+
     /**
      * set all field annotated by @IocInject
      *

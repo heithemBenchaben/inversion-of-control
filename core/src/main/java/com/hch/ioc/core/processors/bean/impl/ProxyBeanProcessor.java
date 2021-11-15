@@ -9,6 +9,19 @@ import java.lang.reflect.Proxy;
 
 public class ProxyBeanProcessor implements BeanProcessor {
 
+    private static ProxyBeanProcessor proxyBeanProcessor;
+
+    private ProxyBeanProcessor() {
+    }
+
+    public static ProxyBeanProcessor getInstance() {
+        if (proxyBeanProcessor == null) {
+            proxyBeanProcessor = new ProxyBeanProcessor();
+        }
+        return proxyBeanProcessor;
+    }
+
+
     @Override
     public void process(BeanProcessContext beanProcessContext) {
         if (beanProcessContext.getIocScanDefinition().getCacheableDefinition() != null) {

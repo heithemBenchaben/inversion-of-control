@@ -11,9 +11,21 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ExternalPropertiesBeanProcessor implements BeanProcessor {
 
+    private static ExternalPropertiesBeanProcessor externalPropertiesBeanProcessor;
+
+    private ExternalPropertiesBeanProcessor() {
+    }
+
+    public static ExternalPropertiesBeanProcessor getInstance() {
+        if (externalPropertiesBeanProcessor == null) {
+            externalPropertiesBeanProcessor = new ExternalPropertiesBeanProcessor();
+        }
+        return externalPropertiesBeanProcessor;
+    }
+
     /**
-     *
      * set all field annotated by @ExternProperties
+     *
      * @param beanProcessContext
      */
     @Override

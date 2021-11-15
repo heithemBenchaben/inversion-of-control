@@ -6,6 +6,18 @@ import com.hch.ioc.core.registries.BeanRegistry;
 
 public class BeforeDestroyBeanProcessor implements BeanProcessor {
 
+    private static BeforeDestroyBeanProcessor beforeDestroyBeanProcessor;
+
+    private BeforeDestroyBeanProcessor() {
+    }
+
+    public static BeforeDestroyBeanProcessor getInstance() {
+        if (beforeDestroyBeanProcessor == null) {
+            beforeDestroyBeanProcessor = new BeforeDestroyBeanProcessor();
+        }
+        return beforeDestroyBeanProcessor;
+    }
+
     /**
      * Add the created instance to the before destroy beans if there is a method annotated by @BeforeDestroy
      *
