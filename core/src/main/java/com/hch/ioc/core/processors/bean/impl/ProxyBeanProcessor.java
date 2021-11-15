@@ -24,7 +24,7 @@ public class ProxyBeanProcessor implements BeanProcessor {
 
     @Override
     public void process(BeanProcessContext beanProcessContext) {
-        if (beanProcessContext.getIocScanDefinition().getCacheableDefinition() != null) {
+        if (beanProcessContext.getIocScanDefinition().getProxied()) {
             try {
                 Object proxy = Proxy.newProxyInstance(
                         beanProcessContext.getIocScanDefinition().getTypes().get(1).getClassLoader(),

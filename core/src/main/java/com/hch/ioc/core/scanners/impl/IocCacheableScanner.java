@@ -26,6 +26,7 @@ public class IocCacheableScanner implements Scanner {
     /**
      * find @IocCacheable under clazz
      * if exist build a CacheableDefinition based on @IocCacheable found
+     *
      * @param iocScanDefinition
      */
     @Override
@@ -34,6 +35,7 @@ public class IocCacheableScanner implements Scanner {
         if (optionalAnnotation.isPresent()) {
             IocCacheable iocCacheable = (IocCacheable) optionalAnnotation.get();
             iocScanDefinition.setCacheableDefinition(new CacheableDefinition(iocCacheable));
+            iocScanDefinition.setProxied(Boolean.TRUE);
         }
     }
 }

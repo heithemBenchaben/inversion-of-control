@@ -1,6 +1,5 @@
 package com.hch.ioc.core.definitions;
 
-import com.hch.ioc.core.annotations.IocCacheable;
 import com.hch.ioc.core.enums.Scope;
 
 import java.util.LinkedList;
@@ -12,6 +11,7 @@ public class IocScanDefinition {
     private List<Class<?>> types;
     private List<String> profiles;
     private Scope scope;
+    private Boolean isProxied;
     private List<IocInjectDefinition> iocInjectDefinitions;
     private List<ExternalPropertyDefinition> externalPropertyDefinitions;
     private AfterPropertiesSetDefinition afterPropertiesSetDefinition;
@@ -24,6 +24,7 @@ public class IocScanDefinition {
         this.clazz = clazz;
         this.types = new LinkedList<>();
         types.add(clazz);
+        this.isProxied = Boolean.FALSE;
         this.profiles = new LinkedList<>();
         this.iocInjectDefinitions = new LinkedList<>();
         this.externalPropertyDefinitions = new LinkedList<>();
@@ -115,5 +116,13 @@ public class IocScanDefinition {
 
     public void setCacheableDefinition(CacheableDefinition cacheableDefinition) {
         this.cacheableDefinition = cacheableDefinition;
+    }
+
+    public Boolean getProxied() {
+        return isProxied;
+    }
+
+    public void setProxied(Boolean proxied) {
+        isProxied = proxied;
     }
 }
