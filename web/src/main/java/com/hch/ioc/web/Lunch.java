@@ -7,6 +7,8 @@ import java.io.File;
 
 public class Lunch {
 
+    public static final String FRONT_CONTROLLER = "front_controller";
+
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8085);
@@ -14,10 +16,10 @@ public class Lunch {
         tomcat.setBaseDir("/");
         String docBase = new File(".").getAbsolutePath();
         Context context = tomcat.addContext(contextPath, docBase);
-        context.addApplicationListener("com.hch.ioc.web.IocServletContextListener");
+        context.addApplicationListener(IocServletContextListener.class.getName());
         FrontController frontController = new FrontController();
-        tomcat.addServlet(contextPath, "front_controller", frontController);
-        context.addServletMappingDecoded("/", "front_controller");
+        tomcat.addServlet(contextPath, FRONT_CONTROLLER, frontController);
+        context.addServletMappingDecoded("/", FRONT_CONTROLLER);
         tomcat.start();
         tomcat.getServer().await();
     }
