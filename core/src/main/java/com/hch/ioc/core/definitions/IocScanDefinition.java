@@ -1,5 +1,6 @@
 package com.hch.ioc.core.definitions;
 
+import com.hch.ioc.core.annotations.IocCacheable;
 import com.hch.ioc.core.enums.Scope;
 
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ public class IocScanDefinition {
     private BeforeDestroyDefinition beforeDestroyDefinition;
     private ConditionalOnMissingBeanDefinition conditionalOnMissingBeanDefinition;
     private ConditionalOnDefinition conditionalOnDefinition;
+    private CacheableDefinition cacheableDefinition;
 
     public IocScanDefinition(Class<?> clazz) {
         this.clazz = clazz;
@@ -105,5 +107,13 @@ public class IocScanDefinition {
 
     public void setConditionalOnDefinition(ConditionalOnDefinition conditionalOnDefinition) {
         this.conditionalOnDefinition = conditionalOnDefinition;
+    }
+
+    public CacheableDefinition getCacheableDefinition() {
+        return cacheableDefinition;
+    }
+
+    public void setCacheableDefinition(CacheableDefinition cacheableDefinition) {
+        this.cacheableDefinition = cacheableDefinition;
     }
 }

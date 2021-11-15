@@ -40,6 +40,7 @@ public class ProcessorsTemplateProvider {
                     new DependencySetterBeanProcessor(),
                     // invock method annotated with afterPropertiesSet if exist
                     new AfterPropertiesSetBeanProcessor(),
+                    new ProxyBeanProcessor(),
                     // add the instance to the list beforeDestroy if there is method annotated by BeforeDestroy
                     new BeforeDestroyBeanProcessor(),
                     // add the instance to the bean registry for singleton scope

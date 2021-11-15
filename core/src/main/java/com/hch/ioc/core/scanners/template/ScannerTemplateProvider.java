@@ -31,6 +31,7 @@ public class ScannerTemplateProvider {
                     new TypeScanner(),
                     new IocProfileScanner(),
                     new IocScopeScanner(),
+                    new IocCacheableScanner(),
                     new IocInjectScanner(),
                     new ExternalPropertyScanner(),
                     new AfterPropertiesSetScanner(),
