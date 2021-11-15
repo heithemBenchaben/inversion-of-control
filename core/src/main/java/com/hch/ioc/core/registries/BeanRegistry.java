@@ -31,7 +31,7 @@ public class BeanRegistry {
     }
 
     public Object getBean(String name) {
-        return ((beans.get(name) != null) ? this.beans.get(name) : createProtypeInstance(name));
+        return ((beans.get(name) != null) ? this.beans.get(name) : createPrototypeInstance(name));
     }
 
     public Object getBean(Class<?> clazz) {
@@ -39,7 +39,7 @@ public class BeanRegistry {
         return getBean(name);
     }
 
-    private Object createProtypeInstance(String beanName) {
+    private Object createPrototypeInstance(String beanName) {
         BeanProcessContext beanProcessContext = new BeanProcessContext(getIocScanDefinitionByName(beanName));
         ProcessorsTemplateProvider.process(beanProcessContext);
         return beanProcessContext.getObject();

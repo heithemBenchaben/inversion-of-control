@@ -2,8 +2,6 @@ package com.hch.ioc.core.proxies;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DynamicInvocationHandler implements InvocationHandler {
 
