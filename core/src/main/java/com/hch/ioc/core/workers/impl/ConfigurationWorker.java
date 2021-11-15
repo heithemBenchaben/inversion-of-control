@@ -11,6 +11,18 @@ public class ConfigurationWorker implements Worker {
 
     public static final String CONFIGURATION_FILE_PATTERN = "configuration.txt";
 
+    private static ConfigurationWorker configurationWorker;
+
+    private ConfigurationWorker() {
+    }
+
+    public static ConfigurationWorker getInstance() {
+        if (configurationWorker == null) {
+            configurationWorker = new ConfigurationWorker();
+        }
+        return configurationWorker;
+    }
+
     /**
      * fill config classes in the ConfigurationRegistry
      */

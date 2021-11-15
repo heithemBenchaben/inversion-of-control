@@ -11,6 +11,18 @@ public class ExternalPropertiesWorker implements Worker {
 
     public static final String IOC_PROPERTIES = "ioc.properties";
 
+    private static ExternalPropertiesWorker externalPropertiesWorker;
+
+    private ExternalPropertiesWorker() {
+    }
+
+    public static ExternalPropertiesWorker getInstance() {
+        if (externalPropertiesWorker == null) {
+            externalPropertiesWorker = new ExternalPropertiesWorker();
+        }
+        return externalPropertiesWorker;
+    }
+
     /**
      * fill properties in the PropertiesRegistry
      */

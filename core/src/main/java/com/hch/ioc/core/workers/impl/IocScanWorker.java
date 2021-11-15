@@ -11,6 +11,18 @@ import java.util.stream.Collectors;
 
 public class IocScanWorker implements Worker {
 
+    private static IocScanWorker iocScanWorker;
+
+    private IocScanWorker() {
+    }
+
+    public static IocScanWorker getInstance() {
+        if (iocScanWorker == null) {
+            iocScanWorker = new IocScanWorker();
+        }
+        return iocScanWorker;
+    }
+
     /**
      * fill Ioc scan classes in the IocScanClazzRegistry
      */

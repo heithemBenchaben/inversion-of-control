@@ -31,14 +31,14 @@ public class WorkerTemplateProvider {
         if (workers == null) {
             workers = Arrays
                     .asList(
-                            new ConfigurationWorker(),
-                            new ScanPathWorker(),
-                            new ExternalPropertiesWorker(),
-                            new IocScanWorker(),
-                            new BeanDefinitionWorker(),
-                            new BeanDefinitionRegistryWorker(),
-                            new BeanWorker(),
-                            new ShutdownHookWorker()
+                            ConfigurationWorker.getInstance(),
+                            ScanPathWorker.getInstance(),
+                            ExternalPropertiesWorker.getInstance(),
+                            IocScanWorker.getInstance(),
+                            BeanDefinitionWorker.getInstance(),
+                            BeanDefinitionRegistryWorker.getInstance(),
+                            BeanWorker.getInstance(),
+                            ShutdownHookWorker.getInstance()
                     );
         }
         return workers;

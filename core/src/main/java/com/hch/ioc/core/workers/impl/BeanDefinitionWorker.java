@@ -8,6 +8,18 @@ import com.hch.ioc.core.workers.Worker;
 
 public class BeanDefinitionWorker implements Worker {
 
+    private static BeanDefinitionWorker beanDefinitionWorker;
+
+    private BeanDefinitionWorker() {
+    }
+
+    public static BeanDefinitionWorker getInstance() {
+        if (beanDefinitionWorker == null) {
+            beanDefinitionWorker = new BeanDefinitionWorker();
+        }
+        return beanDefinitionWorker;
+    }
+
 
     /**
      * build iocScanDefinition for every class annotated by IocScan and fill the BeanDefinitionRegistry

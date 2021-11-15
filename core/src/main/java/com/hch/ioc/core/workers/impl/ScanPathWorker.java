@@ -11,6 +11,18 @@ import java.util.stream.Collectors;
 
 public class ScanPathWorker implements Worker {
 
+    private static ScanPathWorker scanPathWorker;
+
+    private ScanPathWorker() {
+    }
+
+    public static ScanPathWorker getInstance() {
+        if (scanPathWorker == null) {
+            scanPathWorker = new ScanPathWorker();
+        }
+        return scanPathWorker;
+    }
+
     /**
      * fill scan paths in the ScanPathRegistry
      */

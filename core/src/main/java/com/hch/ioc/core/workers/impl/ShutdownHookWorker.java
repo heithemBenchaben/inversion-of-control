@@ -9,6 +9,18 @@ import java.lang.reflect.Method;
 
 public class ShutdownHookWorker implements Worker {
 
+    private static ShutdownHookWorker shutdownHookWorker;
+
+    private ShutdownHookWorker() {
+    }
+
+    public static ShutdownHookWorker getInstance() {
+        if (shutdownHookWorker == null) {
+            shutdownHookWorker = new ShutdownHookWorker();
+        }
+        return shutdownHookWorker;
+    }
+
     @Override
     public void start() {
         // add shutdown hook worker in order to invoke all before destroy method
