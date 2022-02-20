@@ -4,7 +4,7 @@ import com.hch.ioc.core.annotations.IocScope;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.enums.Scope;
 import com.hch.ioc.core.scanners.Scanner;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 
 import java.lang.annotation.Annotation;
 import java.util.Optional;
@@ -30,9 +30,11 @@ public class IocScopeScanner implements Scanner {
      */
     @Override
     public void doScan(IocScanDefinition iocScanDefinition) {
-        iocScanDefinition.setScope(
-                findScope(iocScanDefinition.getClazz())
-        );
+        iocScanDefinition
+                .setScope(
+                        findScope(iocScanDefinition.getClazz()
+                        )
+                );
     }
 
     /**
@@ -43,7 +45,7 @@ public class IocScopeScanner implements Scanner {
      * @return
      */
     private Scope findScope(Class<?> clazz) {
-        Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(clazz, IocScope.class);
+        Optional<Annotation> optionalAnnotation = Utils.findAnnotation(clazz, IocScope.class);
         return (optionalAnnotation.isPresent() ? ((IocScope) optionalAnnotation.get()).scope() : Scope.SINGLETON);
     }
 }

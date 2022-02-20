@@ -4,7 +4,7 @@ import com.hch.ioc.core.annotations.ExternalProperty;
 import com.hch.ioc.core.definitions.ExternalPropertyDefinition;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.scanners.Scanner;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +41,7 @@ public class ExternalPropertyScanner implements Scanner {
     }
 
     private List<ExternalPropertyDefinition> buildExternalPropertyDefinitions(IocScanDefinition iocScanDefinition) {
-        return ContainerUtils
+        return Utils
                 // find fields annotated by @ExternalProperty under clazz
                 .findFieldsAnnotatedBy(
                         Arrays.asList(iocScanDefinition.getClazz().getDeclaredFields())

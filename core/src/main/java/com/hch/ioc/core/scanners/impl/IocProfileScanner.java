@@ -3,7 +3,7 @@ package com.hch.ioc.core.scanners.impl;
 import com.hch.ioc.core.annotations.IocProfile;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.scanners.Scanner;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
@@ -33,9 +33,11 @@ public class IocProfileScanner implements Scanner {
      */
     @Override
     public void doScan(IocScanDefinition iocScanDefinition) {
-        iocScanDefinition.setProfiles(
-                findProfilesIfExist(iocScanDefinition.getClazz())
-        );
+        iocScanDefinition
+                .setProfiles(
+                        findProfilesIfExist(iocScanDefinition.getClazz()
+                        )
+                );
     }
 
     /**
@@ -46,7 +48,7 @@ public class IocProfileScanner implements Scanner {
      * @return
      */
     private List<String> findProfilesIfExist(Class<?> clazz) {
-        Optional<Annotation> optionalAnnotation = ContainerUtils.findAnnotation(clazz, IocProfile.class);
+        Optional<Annotation> optionalAnnotation = Utils.findAnnotation(clazz, IocProfile.class);
         return (optionalAnnotation.isPresent() ? Arrays.asList(((IocProfile) optionalAnnotation.get()).profiles()) : Arrays.asList(DEFAULT));
     }
 }

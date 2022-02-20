@@ -4,7 +4,7 @@ import com.hch.ioc.core.annotations.BeforeDestroy;
 import com.hch.ioc.core.definitions.BeforeDestroyDefinition;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.scanners.Scanner;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -37,10 +37,11 @@ public class BeforeDestroyScanner implements Scanner {
         // find method annotated by @BeforeDestroy under clazz
         Optional<Method> method = findMethodAnnotatedByBeforeDestroy(iocScanDefinition.getClazz());
         if (method.isPresent()) {
-            iocScanDefinition.setBeforeDestroyDefinition(
-                    // build AfterPropertiesSetDefinition
-                    new BeforeDestroyDefinition(method.get())
-            );
+            iocScanDefinition
+                    .setBeforeDestroyDefinition(
+                            // build AfterPropertiesSetDefinition
+                            new BeforeDestroyDefinition(method.get())
+                    );
         }
     }
 
@@ -51,7 +52,7 @@ public class BeforeDestroyScanner implements Scanner {
      * @return
      */
     private Optional<Method> findMethodAnnotatedByBeforeDestroy(Class<?> clazz) {
-        return ContainerUtils
+        return Utils
                 .findMethodsAnnotatedBy(
                         Arrays.asList(clazz.getDeclaredMethods()), BeforeDestroy.class
                 )

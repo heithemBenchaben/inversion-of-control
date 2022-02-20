@@ -18,7 +18,7 @@ public class IocScanDefinition {
     private BeforeDestroyDefinition beforeDestroyDefinition;
     private ConditionalOnMissingBeanDefinition conditionalOnMissingBeanDefinition;
     private ConditionalOnDefinition conditionalOnDefinition;
-    private CacheableDefinition cacheableDefinition;
+    private ProxyDefinition proxyDefinition;
 
     public IocScanDefinition(Class<?> clazz) {
         this.clazz = clazz;
@@ -110,12 +110,12 @@ public class IocScanDefinition {
         this.conditionalOnDefinition = conditionalOnDefinition;
     }
 
-    public CacheableDefinition getCacheableDefinition() {
-        return cacheableDefinition;
+    public ProxyDefinition getProxyDefinition() {
+        return proxyDefinition;
     }
 
-    public void setCacheableDefinition(CacheableDefinition cacheableDefinition) {
-        this.cacheableDefinition = cacheableDefinition;
+    public void setProxyDefinition(ProxyDefinition proxyDefinition) {
+        this.proxyDefinition = proxyDefinition;
     }
 
     public Boolean getProxied() {

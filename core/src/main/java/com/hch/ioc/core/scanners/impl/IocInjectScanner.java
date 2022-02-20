@@ -4,7 +4,7 @@ import com.hch.ioc.core.annotations.IocInject;
 import com.hch.ioc.core.definitions.IocInjectDefinition;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.scanners.Scanner;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +36,8 @@ public class IocInjectScanner implements Scanner {
     public void doScan(IocScanDefinition iocScanDefinition) {
         iocScanDefinition
                 .setIocInjectDefinitions(
-                        buildIocInjectDefinitions(iocScanDefinition.getClazz())
+                        buildIocInjectDefinitions(iocScanDefinition.getClazz()
+                        )
                 );
     }
 
@@ -47,7 +48,7 @@ public class IocInjectScanner implements Scanner {
      * @return
      */
     public List<IocInjectDefinition> buildIocInjectDefinitions(Class<?> clazz) {
-        return ContainerUtils
+        return Utils
                 // find fields annotated by IocInject under clazz
                 .findFieldsAnnotatedBy(
                         Arrays.asList(clazz.getDeclaredFields())
@@ -56,6 +57,7 @@ public class IocInjectScanner implements Scanner {
                 .map(field ->
                         // build IocInjectDefinition for each field
                         new IocInjectDefinition(field)
-                ).collect(Collectors.toList());
+                )
+                .collect(Collectors.toList());
     }
 }

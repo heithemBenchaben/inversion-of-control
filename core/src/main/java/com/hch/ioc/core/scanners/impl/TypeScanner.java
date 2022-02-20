@@ -27,9 +27,14 @@ public class TypeScanner implements Scanner {
      */
     @Override
     public void doScan(IocScanDefinition iocScanDefinition) {
-        iocScanDefinition.getTypes().addAll(
-                Arrays.asList(iocScanDefinition.getClazz().getInterfaces())
-        );
+        iocScanDefinition
+                .getTypes()
+                .addAll(
+                        Arrays
+                                .asList(
+                                        iocScanDefinition.getClazz().getInterfaces()
+                                )
+                );
     }
 
 }

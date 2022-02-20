@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>inversion-of-control</artifactId>
-        <groupId>com.hch.ioc.core</groupId>
+        <groupId>com.hch.ioc</groupId>
         <version>1.0.0</version>
     </parent>
 

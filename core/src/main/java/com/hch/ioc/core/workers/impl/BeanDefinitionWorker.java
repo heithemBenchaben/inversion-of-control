@@ -3,7 +3,7 @@ package com.hch.ioc.core.workers.impl;
 import com.hch.ioc.core.definitions.IocScanDefinition;
 import com.hch.ioc.core.registries.BeanDefinitionRegistry;
 import com.hch.ioc.core.registries.IocScanClazzRegistry;
-import com.hch.ioc.core.scanners.template.ScannerTemplateProvider;
+import com.hch.ioc.core.scanners.provider.ScannerChainProvider;
 import com.hch.ioc.core.workers.Worker;
 
 public class BeanDefinitionWorker implements Worker {
@@ -46,7 +46,7 @@ public class BeanDefinitionWorker implements Worker {
     }
 
     /**
-     * build IocScanDefinition for clazz based on list of Scanner
+     * build IocScanDefinition for clazz based on list of Scanners
      *
      * @param clazz
      * @return
@@ -55,8 +55,8 @@ public class BeanDefinitionWorker implements Worker {
         // instantiate the iocScanDefinition for the target clazz
         IocScanDefinition iocScanDefinition = new IocScanDefinition(clazz);
         // loop over all scanners and update the iocScanDefinition
-        ScannerTemplateProvider.doScans(iocScanDefinition);
-        // return the iocScanDefinition as result after applying all scanner
+        ScannerChainProvider.doScans(iocScanDefinition);
+        // return the iocScanDefinition as result after applying all scanners
         return iocScanDefinition;
     }
 }

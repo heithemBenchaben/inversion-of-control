@@ -3,7 +3,7 @@ package com.hch.ioc.core.workers.impl;
 import com.hch.ioc.core.annotations.IocScan;
 import com.hch.ioc.core.registries.IocScanClazzRegistry;
 import com.hch.ioc.core.registries.ScanPathRegistry;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 import com.hch.ioc.core.workers.Worker;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class IocScanWorker implements Worker {
                 .getScanPathList()
                 .stream()
                 .map(path ->
-                        ContainerUtils
+                        Utils
                                 .findAllClazzAnnotatedBy(path, IocScan.class)
                 )
                 .flatMap(List::stream)

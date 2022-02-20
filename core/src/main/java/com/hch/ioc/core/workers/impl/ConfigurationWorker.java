@@ -1,7 +1,7 @@
 package com.hch.ioc.core.workers.impl;
 
 import com.hch.ioc.core.registries.ConfigurationRegistry;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 import com.hch.ioc.core.workers.Worker;
 
 import java.util.List;
@@ -42,16 +42,17 @@ public class ConfigurationWorker implements Worker {
      * @return
      */
     private static List<Class<?>> findAllConfigurationClazz() {
-        return ContainerUtils
+        return Utils
                 .getResources(CONFIGURATION_FILE_PATTERN)
                 .stream()
                 .map(url ->
-                        ContainerUtils
+                        Utils
                                 // load configuration Class
                                 .loadClazzByFileName(
                                         // read full path of a configuration class from configuration file
-                                        ContainerUtils.readFileAsString(url)
+                                        Utils.readFileAsString(url)
                                 )
-                ).collect(Collectors.toList());
+                )
+                .collect(Collectors.toList());
     }
 }

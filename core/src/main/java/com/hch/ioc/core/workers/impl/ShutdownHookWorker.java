@@ -1,6 +1,6 @@
 package com.hch.ioc.core.workers.impl;
 
-import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
+import com.hch.ioc.core.processors.context.BeanProcessContext;
 import com.hch.ioc.core.registries.BeanRegistry;
 import com.hch.ioc.core.workers.Worker;
 
@@ -24,10 +24,6 @@ public class ShutdownHookWorker implements Worker {
     @Override
     public void start() {
         // add shutdown hook worker in order to invoke all before destroy method
-        addShutdownHook();
-    }
-
-    private static void addShutdownHook() {
         Runtime.getRuntime().addShutdownHook(
                 new Thread("app-shutdown-hook") {
                     @Override

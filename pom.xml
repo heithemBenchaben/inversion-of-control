@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hch.ioc.core</groupId>
+    <groupId>com.hch.ioc</groupId>
     <artifactId>inversion-of-control</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
     <modules>
         <module>core</module>
-        <module>test</module>
+        <module>logger-proxy-manager</module>
         <module>web</module>
     </modules>
 

@@ -1,14 +1,11 @@
 package com.hch.ioc.core.registries;
 
 import com.hch.ioc.core.definitions.IocScanDefinition;
-import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
-import com.hch.ioc.core.processors.bean.template.ProcessorsTemplateProvider;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.processors.context.BeanProcessContext;
+import com.hch.ioc.core.processors.provider.ProcessorChainProvider;
+import com.hch.ioc.core.utils.Utils;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BeanRegistry {
 
@@ -41,13 +38,13 @@ public class BeanRegistry {
 
     private Object createPrototypeInstance(String beanName) {
         BeanProcessContext beanProcessContext = new BeanProcessContext(getIocScanDefinitionByName(beanName));
-        ProcessorsTemplateProvider.process(beanProcessContext);
+        ProcessorChainProvider.process(beanProcessContext);
         return beanProcessContext.getObject();
     }
 
     private IocScanDefinition getIocScanDefinitionByName(String name) {
         IocScanDefinition iocSD = BeanDefinitionRegistry.getInstance().getRegistry().get(name);
-        return (iocSD != null ? iocSD : ContainerUtils.findIocScanDefinitionByType(name));
+        return (iocSD != null ? iocSD : Utils.findIocScanDefinitionByType(name));
     }
 
     public Map<String, Object> getBeans() {

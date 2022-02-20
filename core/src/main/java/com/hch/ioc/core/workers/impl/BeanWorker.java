@@ -1,8 +1,8 @@
 package com.hch.ioc.core.workers.impl;
 
 import com.hch.ioc.core.enums.Scope;
-import com.hch.ioc.core.processors.bean.context.BeanProcessContext;
-import com.hch.ioc.core.processors.bean.template.ProcessorsTemplateProvider;
+import com.hch.ioc.core.processors.context.BeanProcessContext;
+import com.hch.ioc.core.processors.provider.ProcessorChainProvider;
 import com.hch.ioc.core.registries.BeanDefinitionRegistry;
 import com.hch.ioc.core.workers.Worker;
 
@@ -38,7 +38,7 @@ public class BeanWorker implements Worker {
         // resolve only Singleton for this step
         if (beanProcessContext.getIocScanDefinition().getScope() == Scope.SINGLETON) {
             // loop over all processors and execute process in order to update beanProcessContext
-            ProcessorsTemplateProvider.process(beanProcessContext);
+            ProcessorChainProvider.process(beanProcessContext);
         }
         return beanProcessContext;
     }

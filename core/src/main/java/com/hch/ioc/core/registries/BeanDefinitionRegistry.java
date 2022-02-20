@@ -11,21 +11,19 @@ public class BeanDefinitionRegistry {
 
     private Map<String, IocScanDefinition> registry;
 
-    private Map<String,IocScanDefinition> conditionalOnMissingBeanRegistry;
+    private Map<String, IocScanDefinition> conditionalOnMissingBeanRegistry;
 
     private BeanDefinitionRegistry() {
         this.registry = new LinkedHashMap<>();
         this.conditionalOnMissingBeanRegistry = new LinkedHashMap<>();
     }
 
-    public static synchronized BeanDefinitionRegistry getInstance() {
+    public static BeanDefinitionRegistry getInstance() {
         if (beanDefinitionRegistry == null) {
             beanDefinitionRegistry = new BeanDefinitionRegistry();
         }
         return beanDefinitionRegistry;
     }
-
-    // getters and setters
 
     public Map<String, IocScanDefinition> getRegistry() {
         return registry;
@@ -37,9 +35,5 @@ public class BeanDefinitionRegistry {
 
     public Map<String, IocScanDefinition> getConditionalOnMissingBeanRegistry() {
         return conditionalOnMissingBeanRegistry;
-    }
-
-    public void setConditionalOnMissingBeanRegistry(Map<String, IocScanDefinition> conditionalOnMissingBeanRegistry) {
-        this.conditionalOnMissingBeanRegistry = conditionalOnMissingBeanRegistry;
     }
 }

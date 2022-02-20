@@ -3,7 +3,7 @@ package com.hch.ioc.core.workers.impl;
 import com.hch.ioc.core.annotations.ScanPath;
 import com.hch.ioc.core.registries.ConfigurationRegistry;
 import com.hch.ioc.core.registries.ScanPathRegistry;
-import com.hch.ioc.core.utils.ContainerUtils;
+import com.hch.ioc.core.utils.Utils;
 import com.hch.ioc.core.workers.Worker;
 
 import java.util.Arrays;
@@ -50,7 +50,7 @@ public class ScanPathWorker implements Worker {
     }
 
     private ScanPath getScanPathAnnotation(Class<?> clazz) {
-        return (ScanPath) ContainerUtils.findAnnotation(clazz, ScanPath.class).get();
+        return (ScanPath) Utils.findAnnotation(clazz, ScanPath.class).get();
     }
 
 }
